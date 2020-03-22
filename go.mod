@@ -1,4 +1,4 @@
-module home.hualuoo.com/Mrs4s/brook
+module github.com/Mrs4s/brook
 
 go 1.14
 
