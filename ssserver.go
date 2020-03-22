@@ -21,6 +21,7 @@ import (
 	"io"
 	"log"
 	"net"
+	"strings"
 	"time"
 
 	cache "github.com/patrickmn/go-cache"
@@ -40,6 +41,7 @@ type SSServer struct {
 	TCPDeadline int
 	TCPTimeout  int
 	UDPDeadline int
+	BlackLists  []string
 }
 
 // NewSSServer.
@@ -184,6 +186,11 @@ func (s *SSServer) TCPHandle(c *net.TCPConn) error {
 
 	if Debug {
 		log.Println("Dial TCP", address)
+	}
+	for _, url := range s.BlackLists {
+		if strings.Contains(strings.ToLower(address), strings.ToLower(url)) {
+			return errors.New("blocked")
+		}
 	}
 	tmp, err := Dial.Dial("tcp", address)
 	if err != nil {

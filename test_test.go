@@ -19,4 +19,13 @@ import (
 )
 
 func TestTest(t *testing.T) {
+	/*
+		server ,err := NewSSServer("0.0.0.0:8899","test-pass",60,0,60)
+		server.BlackLists = []string{"baidu.com"}
+		if err != nil{
+			fmt.Println("cannot start ss server",err)
+			return
+		}
+		server.ListenAndServe()
+	*/
 }
